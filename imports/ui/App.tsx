@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Hello from './Hello';
-import Info from './Info';
+import InfoContainer from './Info';
 import { Menu, Icon } from 'antd';
 
 const SubMenu = Menu.SubMenu;
@@ -28,7 +28,7 @@ class App extends React.Component {
         >
           <Menu.Item key="mail">
             <Icon type="mail" />Navigation One
-            </Menu.Item>
+          </Menu.Item>
           <Menu.Item key="app" disabled>
             <Icon type="appstore" />Navigation Two
             </Menu.Item>
@@ -47,7 +47,7 @@ class App extends React.Component {
           </Menu.Item>
         </Menu>
         <Hello />
-        <Info />
+        <InfoContainer />
       </div>
     );
   }

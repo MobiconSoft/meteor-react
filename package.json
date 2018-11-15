@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "antd": "^3.10.7",
+    "indexof": "0.0.1",
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0"
@@ -17,7 +18,7 @@
   "meteor": {
     "mainModule": {
       "client": "client/main.tsx",
-      "server": "server/main.js"
+      "server": "server/main.ts"
     },
     "testModule": "tests/main.js"
   },
