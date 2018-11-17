@@ -7,5 +7,4 @@ const rootReducer = combineReducers({
   router: routerReducer,
   links: linksReducer
 });
-
 export default rootReducer;
