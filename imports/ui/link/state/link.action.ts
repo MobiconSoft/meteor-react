@@ -1,14 +1,7 @@
-import { action } from 'typesafe-actions';
-import { LinkModel } from './link.model';
+import { createAction } from 'redux-actions';
 
 export const ADD_LINK = '[link] ADD_LINK';
 export const DELETE_LINK = '[link] DELETE_LINK';
 
-export const AddLink = ({title, url}: LinkModel) => 
-  action(ADD_LINK, {
-    title,
-    url
-  });
-
-
-export const DeleteLink = (_id: string) => action(DELETE_LINK, _id)
+export const addLink = createAction(ADD_LINK);
+export const deleteLink = createAction(DELETE_LINK);

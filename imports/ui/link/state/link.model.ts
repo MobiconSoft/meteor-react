@@ -1,4 +1,4 @@
-export type LinkModel {
+export type LinkModel = {
   _id?: string;
   title: string;
   url: string;
