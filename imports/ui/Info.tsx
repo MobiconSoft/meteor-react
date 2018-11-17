@@ -1,37 +1,40 @@
 import * as React from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
 import Links from '../api/links';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+
+import AddLink from './link/AddLink';
+import LinkList from './link/LinkList';
 
 interface InfoProps {
   links: any;
+  loading: boolean
 }
 
 class Info extends React.Component<InfoProps, any> {
-  render() {
-    const links = this.props.links.map(
-      link => this.makeLink(link)
-    );
-
-    return (
-      <div>
-        <h2>Learn Meteor!</h2>
-        <ul>{ links }</ul>
-      </div>
-    );
+  linkList() {
+    const { links, loading } = this.props;
+    if (loading) {
+      return <div>loading...</div>
+    } else {
+      return <LinkList links={links} />
+    }
   }
 
-  makeLink(link) {
+  render() {
     return (
-      <li key={link._id}>
-        <a href={link.url} target="_blank">{link.title}</a>
-      </li>
+      <div>
+        <AddLink />
+        {this.linkList()}
+      </div>
     );
   }
 }
 
-const InfoContainer = withTracker(() => {
+export default withTracker(() => {
+  const handle = Meteor.subscribe('links');
   return {
     links: Links.find().fetch(),
+    loading: !handle.ready()
   };
 })(Info);
-export default InfoContainer;
