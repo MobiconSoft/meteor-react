@@ -8,7 +8,7 @@ export interface LinkListProps {
 export default class LinkList extends React.Component<LinkListProps, any> {
   public render() {
     const links = this.props.links.map(
-      link => <Link link={link}/>
+      link => <Link key={link._id} link={link}/>
     );
     return (
       <div>

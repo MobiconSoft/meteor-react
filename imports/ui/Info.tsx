@@ -1,10 +1,13 @@
 import * as React from 'react';
-import Links from '../api/links';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
+import Links from '../api/links';
 import AddLink from './link/AddLink';
 import LinkList from './link/LinkList';
+import { RootState } from './store';
 
 interface InfoProps {
   links: any;
@@ -31,10 +34,18 @@ class Info extends React.Component<InfoProps, any> {
   }
 }
 
-export default withTracker(() => {
-  const handle = Meteor.subscribe('links');
-  return {
-    links: Links.find().fetch(),
-    loading: !handle.ready()
-  };
-})(Info);
+
+const mapProps = (state: RootState) => ({
+  links: state.links.links
+});
+
+export default compose(
+  withTracker(() => {
+    const handle = Meteor.subscribe('links');
+    return {
+      links: Links.find().fetch(),
+      loading: !handle.ready()
+    };
+  }),
+  // connect(mapProps)
+)(Info);

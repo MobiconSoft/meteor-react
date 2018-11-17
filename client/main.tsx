@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import App from '../imports/ui/App'
-import store from './state';
+import store from '../imports/ui/store';
 
 const Root = (
   <Provider store={store}>

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { linkService } from './links.service';
+
 export interface AddLinkProps {
 }
+
 export default class AddLink extends React.Component<AddLinkProps, any> {
   handleSubmit = (e: any) => {
     //ignore validation
