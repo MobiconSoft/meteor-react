@@ -33,14 +33,14 @@ const composeEnhancers =
   compose;
 
 const rootEpic = combineEpics(addLinkEpic);
-export const epicMiddleware = createEpicMiddleware();
+const epicMiddleware = createEpicMiddleware();
 
 /***********************
  * root store
  ***********************/
 function configureStore(initialState?: object) {
   // configure middlewares
-  const middlewares = [epicMiddleware];
+  const middlewares = [thunk, epicMiddleware];
   // compose enhancers
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
   // create store

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { linkService } from './link.service';
 import { connect } from 'react-redux';
-import { addLink } from './link.redux';
 import { RootState } from '../store';
+import { addLink } from './link.redux';
 
 export interface AddLinkProps {
   addLink: Function;
@@ -32,4 +32,4 @@ class AddLink extends React.Component<AddLinkProps, any> {
   }
 }
 
-export default connect(undefined, {addLink})(AddLink);
+export default connect(undefined, { addLink })(AddLink);

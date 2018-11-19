@@ -1,6 +1,7 @@
 import { action, ActionType } from 'typesafe-actions';
 import { combineReducers, Dispatch } from 'redux';
 import { createSelector } from 'reselect';
+import { linkService } from './link.service';
 
 /**************************
  * constants, model, state

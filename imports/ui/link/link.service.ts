@@ -7,9 +7,9 @@ import { insertCollection, removeCollection } from '../sdk';
 import { ADD, LinkAction } from './link.redux';
 
 class LinkService {
-  // addLink({title, url}) {
-  //   return insertCollection(Links, { title, url, createAt: new Date() });
-  // }
+  addLink({title, url}) {
+    return insertCollection(Links, { title, url, createAt: new Date() });
+  }
   removeLink(_id: string) {
     return removeCollection(Links, _id);
   }
