@@ -36,7 +36,7 @@ class Info extends React.Component<InfoProps, any> {
 
 
 const mapProps = (state: RootState) => ({
-  links: state.links.links
+  links: state.links.list
 });
 
 export default compose(

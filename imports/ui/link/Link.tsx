@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { linkService } from './links.service';
+import { linkService } from './link.service';
 
 export interface LinkProps {
   link: any

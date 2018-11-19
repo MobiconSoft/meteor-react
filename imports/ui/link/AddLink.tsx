@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { linkService } from './links.service';
+import { linkService } from './link.service';
+import { connect } from 'react-redux';
+import { addLink } from './link.redux';
+import { RootState } from '../store';
 
 export interface AddLinkProps {
+  addLink: Function;
 }
 
-export default class AddLink extends React.Component<AddLinkProps, any> {
+class AddLink extends React.Component<AddLinkProps, any> {
   handleSubmit = (e: any) => {
     //ignore validation
     e.preventDefault();
@@ -12,7 +16,9 @@ export default class AddLink extends React.Component<AddLinkProps, any> {
       title: e.target.title.value,
       url: e.target.url.value
     }
-    linkService.addLink(param);
+    // linkService.addLink(param);
+    const { addLink } = this.props;
+    addLink(param);
   };
 
   public render() {
@@ -25,3 +31,5 @@ export default class AddLink extends React.Component<AddLinkProps, any> {
     )
   }
 }
+
+export default connect(undefined, {addLink})(AddLink);
