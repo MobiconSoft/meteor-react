@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { linkService } from './link.service';
+import { removeLink } from './link.action';
 
 export interface LinkProps {
   link: any
@@ -8,7 +8,7 @@ export interface LinkProps {
 export default class Link extends React.Component<LinkProps, any> {
   removeLink = () => {
     const { link } = this.props;
-    linkService.removeLink(link._id);
+    removeLink(link._id);
   }
 
   public render() {

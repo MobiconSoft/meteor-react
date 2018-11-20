@@ -1,60 +1,35 @@
-import { action, ActionType } from 'typesafe-actions';
-import { combineReducers, Dispatch } from 'redux';
+import { ActionType } from 'typesafe-actions';
+import { combineReducers } from 'redux';
 import { createSelector } from 'reselect';
-import { linkService } from './link.service';
+import * as actions from './link.action';
 
 /**************************
- * constants, model, state
+ * state
  **************************/
-// constants
-export const ADD = '[link] ADD';
-export const DELETE = '[link] DELETE';
-export const CHANGE = '[link] CHANGE';
-
-// model
-export type LinkModel = {
-  _id?: string;
-  title?: string;
-  url?: string;
-  visited?: boolean;
-  createdAt?: any;
-  updatedAt?: any;
-};
-
 // state
 export type LinkState = {
-  list: LinkModel[],
+  list: actions.LinkModel[],
   linkFilter: string
 };
 
 /**************************
- * actions, action-type
- **************************/
-export const addLink = ({title, url}) =>
-  action(ADD, {
-    title,
-    url
-  });
-
-export const removeLink = (id: string) => 
-  action(DELETE, id);
-
-export const changeLink = (id: string) =>
-  action(CHANGE, id);
-
-export type LinkAction = ActionType<typeof addLink | typeof removeLink | typeof changeLink>;
-
-/**************************
  * reducers
  **************************/
+export type LinkAction = ActionType<typeof actions>;
 export const linkReducer = combineReducers<LinkState, LinkAction>({
   list: (state = [], action) => {
     switch (action.type) {
-      case ADD:
+      case actions.LOAD_SUCCESS:
+        return [...action.payload];
+      case actions.ADD_FAILED:
+        return state;
+      case actions.ADD_SUCCESS:
         return [...state, action.payload];
-      case DELETE:
+      case actions.DELETE_FAILED:
+        return state;
+      case actions.DELETE_SUCCESS:
         return state.filter(item => item._id === action.payload);
-      case CHANGE:
+      case actions.CHANGE:
         return state.map(
           item =>
             item._id === action.payload
@@ -67,7 +42,7 @@ export const linkReducer = combineReducers<LinkState, LinkAction>({
   },
   linkFilter: (state = '', action) => {
     switch (action.type) {
-      case CHANGE:
+      case actions.CHANGE:
         if (action.payload === 'visited'){
           return '';
         } else {

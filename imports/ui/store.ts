@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { linkReducer, LinkAction } from './link/link.redux';
+import { linkReducer, LinkAction } from './link/link.reducer';
 import { StateType } from 'typesafe-actions'; 
 import { RouterAction, LocationChangeAction } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import { addLinkEpic } from './link/link.service';
+import { linkEpic } from './link/link.epic';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 /***********************
@@ -32,7 +32,7 @@ const composeEnhancers =
     (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
-const rootEpic = combineEpics(addLinkEpic);
+const rootEpic = combineEpics(linkEpic);
 const epicMiddleware = createEpicMiddleware();
 
 /***********************

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { linkService } from './link.service';
 import { connect } from 'react-redux';
-import { RootState } from '../store';
-import { addLink } from './link.redux';
+import { addLink } from './link.action';
 
 export interface AddLinkProps {
   addLink: Function;
@@ -16,7 +14,6 @@ class AddLink extends React.Component<AddLinkProps, any> {
       title: e.target.title.value,
       url: e.target.url.value
     }
-    // linkService.addLink(param);
     const { addLink } = this.props;
     addLink(param);
   };

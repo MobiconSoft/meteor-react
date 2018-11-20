@@ -8,13 +8,22 @@ import Links from '../api/links';
 import AddLink from './link/AddLink';
 import LinkList from './link/LinkList';
 import { RootState } from './store';
+import { loadLink } from './link/link.action';
 
 interface InfoProps {
   links: any;
+  linksMeteor: any;
+  loadLink: any;
   loading: boolean
 }
 
 class Info extends React.Component<InfoProps, any> {
+  
+  componentDidUpdate() {
+    const { loadLink, links } = this.props;  
+    loadLink(links);
+  }
+
   linkList() {
     const { links, loading } = this.props;
     if (loading) {
@@ -36,16 +45,16 @@ class Info extends React.Component<InfoProps, any> {
 
 
 const mapProps = (state: RootState) => ({
-  links: state.links.list
+  
 });
 
 export default compose(
   withTracker(() => {
     const handle = Meteor.subscribe('links');
     return {
-      links: Links.find().fetch(),
+      links: Links.find({}).fetch(),
       loading: !handle.ready()
     };
   }),
-  // connect(mapProps)
+  connect(mapProps, { loadLink })
 )(Info);
