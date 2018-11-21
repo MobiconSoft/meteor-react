@@ -19,8 +19,6 @@ export type LinkAction = ActionType<typeof actions>;
 export const linkReducer = combineReducers<LinkState, LinkAction>({
   list: (state = [], action) => {
     switch (action.type) {
-      case actions.LOAD_SUCCESS:
-        return [...action.payload];
       case actions.ADD_FAILED:
         return state;
       case actions.ADD_SUCCESS:

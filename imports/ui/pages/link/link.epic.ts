@@ -3,23 +3,9 @@ import { Epic, combineEpics } from 'redux-observable';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { isOfType } from 'typesafe-actions';
 
-import Links from '../../api/links';
-import { insertCollection, removeCollection, loadCollection, RequestModel } from '../sdk';
+import Links from '../../../api/links';
+import { insertCollection, removeCollection, RequestModel } from '../../sdk';
 import * as actions from './link.action';
-
-const loadLinks: Epic = (
-  action$,
-  store
-) =>
-  action$.pipe(
-    filter(isOfType(actions.LOAD_REQUEST)),
-    map(action => {
-      return actions.loadLinkSuccess(action.payload);
-    }),
-    // takeUntil(action$.pipe(
-    //   filter(isOfType(actions.ADD_REQUEST))
-    // ))
-  );
 
 const addLink: Epic = (
   action$,
@@ -49,18 +35,17 @@ const removeLink: Epic = (
   action$.pipe(
     filter(isOfType(actions.DELETE_REQUEST)),
     switchMap(action => {
-      const { _id } = action.payload;
-      return removeCollection(Links, _id);
+      return removeCollection(Links, action.payload);
     }),
     map((response: RequestModel) => {
       if (response.error) {
         return actions.removeLinkFailed({ ...response.result, ...response.params })
       }
-      return actions.removeLinkSuccess(response.result)
+      return actions.removeLinkSuccess(response.params._id);
     }),
     // takeUntil(action$.pipe(
     //   filter(isOfType(actions.ADD_REQUEST))
     // ))
   );
 
-export const linkEpic = combineEpics(loadLinks, addLink, removeLink);
+export const linkEpic = combineEpics(addLink, removeLink);

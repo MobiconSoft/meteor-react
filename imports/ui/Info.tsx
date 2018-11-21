@@ -5,24 +5,16 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import Links from '../api/links';
-import AddLink from './link/AddLink';
-import LinkList from './link/LinkList';
+import AddLink from './pages/link/AddLink';
+import LinkList from './pages/link/LinkList';
 import { RootState } from './store';
-import { loadLink } from './link/link.action';
 
 interface InfoProps {
   links: any;
-  linksMeteor: any;
-  loadLink: any;
   loading: boolean
 }
 
 class Info extends React.Component<InfoProps, any> {
-  
-  componentDidUpdate() {
-    const { loadLink, links } = this.props;  
-    loadLink(links);
-  }
 
   linkList() {
     const { links, loading } = this.props;
@@ -56,5 +48,5 @@ export default compose(
       loading: !handle.ready()
     };
   }),
-  connect(mapProps, { loadLink })
+  connect(mapProps)
 )(Info);

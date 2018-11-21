@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { removeLink } from './link.action';
+import { connect } from 'react-redux';
 
 export interface LinkProps {
-  link: any
+  link: any,
+  removeLink: Function
 }
-
-export default class Link extends React.Component<LinkProps, any> {
+class Link extends React.Component<LinkProps, any> {
   removeLink = () => {
-    const { link } = this.props;
+    const { link, removeLink } = this.props;
     removeLink(link._id);
   }
 
@@ -21,3 +22,5 @@ export default class Link extends React.Component<LinkProps, any> {
     );
   }
 }
+
+export default connect(undefined, { removeLink })(Link);

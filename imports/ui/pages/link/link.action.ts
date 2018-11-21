@@ -4,8 +4,6 @@ import { action } from 'typesafe-actions';
  * constants, model
  **************************/
 // constants
-export const LOAD_REQUEST = '[link] LOAD_REQUEST';
-export const LOAD_SUCCESS = '[link] LOAD_SUCCESS';
 export const ADD_REQUEST = '[link] ADD_REQUEST';
 export const ADD_SUCCESS = '[link] ADD_SUCCESS';
 export const ADD_FAILED = '[link] ADD_FAILED';
@@ -30,8 +28,6 @@ export type LinkModel = {
 /**************************
  * actions, action-type
  **************************/
-export const loadLink = (params: any) => action(LOAD_REQUEST, params);
-export const loadLinkSuccess = (params: LinkModel[]) => action(LOAD_SUCCESS, params);
 export const addLink = (params: LinkModel) => action(ADD_REQUEST, params);
 export const addLinkSuccess = (params: LinkModel) => action(ADD_SUCCESS, params);
 export const addLinkFailed = (params: LinkModel) => action(ADD_FAILED, params);

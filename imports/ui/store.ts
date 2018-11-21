@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import { linkReducer, LinkAction } from './link/link.reducer';
-import { StateType } from 'typesafe-actions'; 
-import { RouterAction, LocationChangeAction } from 'react-router-redux';
-import thunk from 'redux-thunk';
-import { linkEpic } from './link/link.epic';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { RouterAction, LocationChangeAction } from 'react-router-redux';
+import { routerReducer } from 'react-router-redux';
+import { StateType } from 'typesafe-actions'; 
+
+import { linkEpic } from './pages/link/link.epic';
+import { linkReducer, LinkAction } from './pages/link/link.reducer';
 
 /***********************
  * root reducer
@@ -40,7 +40,7 @@ const epicMiddleware = createEpicMiddleware();
  ***********************/
 function configureStore(initialState?: object) {
   // configure middlewares
-  const middlewares = [thunk, epicMiddleware];
+  const middlewares = [epicMiddleware];
   // compose enhancers
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
   // create store
