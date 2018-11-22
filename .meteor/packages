@@ -21,3 +21,4 @@ react-meteor-data       # React higher-order component for reactively tracking M
 fourseven:scss
 barbatus:typescript
 less
+accounts-password

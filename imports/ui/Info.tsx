@@ -8,6 +8,7 @@ import Links from '../api/links';
 import AddLink from './pages/link/AddLink';
 import LinkList from './pages/link/LinkList';
 import { RootState } from './store';
+import { Accounts } from 'meteor/accounts-base';
 
 interface InfoProps {
   links: any;
@@ -25,9 +26,14 @@ class Info extends React.Component<InfoProps, any> {
     }
   }
 
+  onLogout = () => {
+    Accounts.logout();
+  }
+
   render() {
     return (
       <div>
+        <button onClick={this.onLogout}>Log out</button>
         <AddLink />
         {this.linkList()}
       </div>
