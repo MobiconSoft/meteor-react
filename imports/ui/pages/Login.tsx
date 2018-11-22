@@ -6,10 +6,14 @@ export interface LoginProps {
   history: any;
 }
 
-export default class Login extends React.Component<LoginProps, any> {
+export interface LoginState {
+  error: string;
+}
+
+export default class Login extends React.Component<LoginProps, LoginState> {
   public refs: {
-    email: HTMLInputElement,
-    password: HTMLInputElement
+    email: any,
+    password: any
   }
 
   constructor(props) {

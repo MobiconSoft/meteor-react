@@ -5,11 +5,15 @@ import { Accounts } from 'meteor/accounts-base'
 export interface SignupProps {
 }
 
-export default class Signup extends React.Component<SignupProps, any> {
+export interface LoginState {
+  error: string;
+}
+
+export default class Signup extends React.Component<SignupProps, LoginState> {
   // @see https://goenning.net/2016/11/02/strongly-typed-react-refs-with-typescript/
   public refs: {
-    email: HTMLInputElement,
-    password: HTMLInputElement
+    email: any,
+    password: any
   }
 
   constructor(props) {
