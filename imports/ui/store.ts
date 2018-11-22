@@ -28,8 +28,8 @@ export type RootAction = ReactRouterAction | LinkAction;
  ***********************/
 const composeEnhancers =
   (process.env.NODE_ENV === 'development' &&
-    (<any>window) &&
-    (<any>window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    (window as any) &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
 
 const rootEpic = combineEpics(linkEpic);
