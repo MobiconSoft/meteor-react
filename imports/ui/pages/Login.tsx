@@ -11,8 +11,8 @@ export interface LoginState {
 }
 
 export default class Login extends React.Component<LoginProps, LoginState> {
-  email: React.RefObject<HTMLInputElement> = React.createRef();
-  password: React.RefObject<HTMLInputElement> = React.createRef();
+  email: any = React.createRef();
+  password: any = React.createRef();
 
   constructor(props) {
     super(props);

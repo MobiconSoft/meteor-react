@@ -7,12 +7,14 @@ export interface AddLinkProps {
 }
 
 class AddLink extends React.Component<AddLinkProps, any> {
+  title: any = React.createRef();
+  url: any = React.createRef();
+
   handleSubmit = (e: any) => {
-    //ignore validation
     e.preventDefault();
     const param = {
-      title: e.target.title.value,
-      url: e.target.url.value
+      title: this.title.current.value,
+      url: this.url.current.value
     }
     const { addLink } = this.props;
     addLink(param);
@@ -21,8 +23,8 @@ class AddLink extends React.Component<AddLinkProps, any> {
   public render() {
     return (
       <form onSubmit={this.handleSubmit} >
-        <input type="text" name="title" placeholder="title" />
-        <input type="text" name="url" placeholder="url" />
+        <input type="text" ref={this.title} name="title" placeholder="title" />
+        <input type="text" ref={this.url} name="url" placeholder="url" />
         <button>Add Link</button>
       </form>
     )
