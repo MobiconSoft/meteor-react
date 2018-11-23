@@ -11,10 +11,8 @@ export interface LoginState {
 }
 
 export default class Login extends React.Component<LoginProps, LoginState> {
-  public refs: {
-    email: any,
-    password: any
-  }
+  email: React.RefObject<HTMLInputElement> = React.createRef();
+  password: React.RefObject<HTMLInputElement> = React.createRef();
 
   constructor(props) {
     super(props);
@@ -26,9 +24,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   onLogin = (e: any) => {
     e.preventDefault();
 
-    let email = this.refs.email.value.trim();
-    let password = this.refs.password.value.trim();
-    console.log('login email: ', email, ', password: ', password);
+    let email = this.email.current.value.trim();
+    let password = this.password.current.value.trim();
     Meteor.loginWithPassword({ email }, password, (err) => {
       if (err) {
         this.setState({ error: err.reason });
@@ -44,8 +41,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
         <h1>Login to short Link</h1>
         {this.state.error ? <p>{this.state.error} </p> : undefined}
         <form onSubmit={this.onLogin}>
-          <input type="email" ref="email" name="email" placeholder="Email" />
-          <input type="password" ref="password" name="password" placeholder="Password" />
+          <input type="email" ref={this.email} name="email" placeholder="Email" />
+          <input type="password" ref={this.password} name="password" placeholder="Password" />
           <button>Login</button>
         </form>
         <Link to="/signup">Have a account?</Link>

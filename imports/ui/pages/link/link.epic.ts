@@ -2,6 +2,7 @@
 import { Epic, combineEpics } from 'redux-observable';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 import { isOfType } from 'typesafe-actions';
+import { Meteor } from 'meteor/meteor';
 
 import Links from '../../../api/links';
 import { insertCollection, removeCollection, RequestModel } from '../../sdk';
@@ -15,7 +16,8 @@ const addLink: Epic = (
     filter(isOfType(actions.ADD_REQUEST)),
     switchMap(action => {
       const { title, url } = action.payload;
-      return insertCollection(Links, { title, url, createdAt: new Date() })
+      const owner = Meteor.userId();
+      return insertCollection(Links, { title, url, owner, createdAt: new Date() })
     }),
     map((response: RequestModel) => {
       if (response.error) {
