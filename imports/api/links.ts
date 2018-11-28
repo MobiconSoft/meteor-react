@@ -14,6 +14,21 @@ if (Meteor.isServer) {
       console.log('remove doc:', doc);
       return (userId && doc.owner === userId);
     }
-  })
+  });
+
+  Meteor.methods({
+    insertLink(params: any) {
+      if (!this.userId) {
+        throw new Meteor.Error('Please login');
+      }
+      return Links.insert(params);
+    },
+    removeLink(_id: string) {
+      if (!this.userId) {
+        throw new Meteor.Error('Please login');
+      }
+      return Links.remove(_id);
+    }
+  });
 }
 export default Links;

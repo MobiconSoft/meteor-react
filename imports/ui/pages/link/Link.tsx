@@ -7,7 +7,7 @@ export interface LinkProps {
   removeLink: Function
 }
 class Link extends React.Component<LinkProps, any> {
-  removeLink = () => {
+  deleteLink = () => {
     const { link, removeLink } = this.props;
     removeLink(link._id);
   }
@@ -17,7 +17,7 @@ class Link extends React.Component<LinkProps, any> {
     return (
       <li key={link._id}>
         <a href={link.url} target="_blank">{link.title}</a>
-        <button onClick={this.removeLink}> x </button>
+        <button onClick={this.deleteLink}> x </button>
       </li>
     );
   }

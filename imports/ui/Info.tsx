@@ -41,17 +41,16 @@ class Info extends React.Component<InfoProps, any> {
   }
 }
 
-
 const mapProps = (state: RootState) => ({
   
 });
 
 export default compose(
   withTracker(() => {
-    const handle = Meteor.subscribe('links');
+    const connection = Meteor.subscribe('links');
     return {
       links: Links.find({}).fetch(),
-      loading: !handle.ready()
+      loading: !connection.ready()
     };
   }),
   connect(mapProps)
