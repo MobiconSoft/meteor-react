@@ -32,10 +32,6 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
         this.setState({ error: '' });
       }
     });
-
-    // this.setState({
-    //   error: 'something wrong'
-    // });
   }
 
   public render() {
