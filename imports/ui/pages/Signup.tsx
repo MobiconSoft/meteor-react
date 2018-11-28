@@ -44,7 +44,7 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
           <input type="password" ref={this.password} name="password" placeholder="Password" />
           <button>Create Acount</button>
         </form>
-        <Link to="/login">Already have a account?</Link>
+        <Link to="/">Already have a account?</Link>
       </div>
     );
   }
