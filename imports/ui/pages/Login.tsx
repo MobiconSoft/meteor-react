@@ -40,7 +40,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       <div>
         <h1>Login to short Link</h1>
         {this.state.error ? <p>{this.state.error} </p> : undefined}
-        <form onSubmit={this.onLogin}>
+        <form onSubmit={this.onLogin} noValidate>
           <input type="email" ref={this.email} name="email" placeholder="Email" />
           <input type="password" ref={this.password} name="password" placeholder="Password" />
           <button>Login</button>

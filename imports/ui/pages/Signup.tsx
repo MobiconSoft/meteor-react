@@ -43,7 +43,7 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
       <div>
         <h1>Signup to short Link</h1>
         {this.state.error ? <p>{this.state.error} </p> : undefined}
-        <form onSubmit={this.onCreateAccount}>
+        <form onSubmit={this.onCreateAccount} noValidate>
           <input type="email" ref={this.email} name="email" placeholder="Email" />
           <input type="password" ref={this.password} name="password" placeholder="Password" />
           <button>Create Acount</button>

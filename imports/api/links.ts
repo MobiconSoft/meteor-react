@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import SimpleSchema from 'simpl-schema';
 
 const Links = new Mongo.Collection('links');
 
@@ -16,11 +17,29 @@ if (Meteor.isServer) {
     }
   });
 
+  const linkSchema = new SimpleSchema({
+    title: {
+      type: String,
+      min: 3
+    },
+    url: {
+      type: String
+    },
+    owner: {
+      type: String
+    },
+    createdAt: {
+      type: Date 
+    }
+  });
+
   Meteor.methods({
     insertLink(params: any) {
       if (!this.userId) {
         throw new Meteor.Error('Please login');
       }
+      console.log('> insert Link: ', params);
+      linkSchema.validate(params);
       return Links.insert(params);
     },
     removeLink(_id: string) {
