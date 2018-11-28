@@ -38,9 +38,12 @@ if (Meteor.isServer) {
       if (!this.userId) {
         throw new Meteor.Error('Please login');
       }
-      console.log('> insert Link: ', params);
-      linkSchema.validate(params);
-      return Links.insert(params);
+      try {
+        linkSchema.validate(params);
+        return Links.insert(params);
+      } catch(e) {
+        throw new Meteor.Error('no valid schema');
+      }
     },
     removeLink(_id: string) {
       if (!this.userId) {
