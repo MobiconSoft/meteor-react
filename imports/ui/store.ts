@@ -1,8 +1,8 @@
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import { RouterAction, LocationChangeAction } from 'react-router-redux';
-import { routerReducer } from 'react-router-redux';
-import { StateType } from 'typesafe-actions'; 
+import { StateType } from 'typesafe-actions';
+import { createBrowserHistory } from 'history';
+import { connectRouter, RouterAction, LocationChangeAction } from 'connected-react-router';
 
 import { linkEpic } from './pages/link/link.epic';
 import { linkReducer, LinkAction } from './pages/link/link.reducer';
@@ -10,8 +10,10 @@ import { linkReducer, LinkAction } from './pages/link/link.reducer';
 /***********************
  * root reducer
  ***********************/
+export const browserHistory = createBrowserHistory();
+
 const rootReducer = combineReducers({
-  router: routerReducer,
+  router: connectRouter(browserHistory),
   links: linkReducer
 });
 
