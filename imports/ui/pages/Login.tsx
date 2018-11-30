@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
+import { Row, Col, Button } from 'antd';
+import AFInput from '../sdk/antd/antd-final-input';
+
 
 export interface LoginProps {
   history: any;
@@ -12,9 +15,6 @@ export interface LoginState {
 }
 
 export default class Login extends React.Component<LoginProps, LoginState> {
-  // email: any = React.createRef();
-  // password: any = React.createRef();
-
   constructor(props) {
     super(props);
     this.state = {
@@ -22,12 +22,9 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     };
   }
 
-  onLogin = ({email, password}) => {
-    // e.preventDefault();
-    // let email = this.email.current.value.trim();
-    // let password = this.password.current.value.trim();
+  onLogin = ({ email, password }) => {
     if (!email || !password) {
-      this.setState({error: 'Please input email and password both'});
+      this.setState({ error: 'Please input email and password both' });
       return;
     }
     Meteor.loginWithPassword({ email }, password, (err) => {
@@ -39,15 +36,15 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     });
   }
 
-  makeForm = ({ handleSubmit, submitting, pristine, values }) => {
+  makeForm = ({ handleSubmit, submitting, pristine }) => {
     return (
-      <form onSubmit={handleSubmit}>
-        <Field name="email" component="input" type="email" placeholder="Email" required/>
-        <Field name="password" component="input" type="password" placeholder="Passowrd" required/>
-        {/* <input type="email" ref={this.email} name="email" placeholder="Email" />
-        <input type="password" ref={this.password} name="password" placeholder="Password" /> */}
-        <button type="submit" disabled={submitting || pristine}>Login</button>
-      </form>
+      <React.Fragment>
+        <form onSubmit={handleSubmit}>
+          <Col span={4}><AFInput name="email" type="email" placeholder="Email" /></Col>
+          <Col span={4}><AFInput name="password" type="password" placeholder="Passowrd" /></Col>
+          <Col span={2}><Button type="primary" htmlType="submit" disabled={submitting || pristine}>Login</Button></Col>
+        </form>
+      </React.Fragment>
     );
   };
 
@@ -56,9 +53,12 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       <div>
         <h1>Login to short Link</h1>
         {this.state.error ? <p>{this.state.error} </p> : undefined}
-        <Form onSubmit={this.onLogin} render={this.makeForm}
-        />
-        <Link to="/signup">Have a account?</Link>
+        <Row gutter={5}>
+          <Form onSubmit={this.onLogin} render={this.makeForm} />
+        </Row>
+        <Row gutter={5} align="bottom">
+          <Link to="/signup">Have a account?</Link>
+        </Row>
       </div>
     );
   }
