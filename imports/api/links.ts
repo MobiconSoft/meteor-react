@@ -5,13 +5,20 @@ import SimpleSchema from 'simpl-schema';
 const Links = new Mongo.Collection('links');
 
 if (Meteor.isServer) {
-  Meteor.publish('links', () => Links.find());
+  Meteor.publish('links', ({userId}) => {
+    console.log('userId:', userId);
+    if (!userId) {
+      return this.ready();
+    }
+    return Links.find({owner: userId});
+  });
+
   Links.allow({
     insert (userId: string, doc: any) {
       console.log('insert doc:', doc);
       return (userId && doc.owner === userId);
     },
-    remove(userId: string, doc: any) {
+    remove (userId: string, doc: any) {
       console.log('remove doc:', doc);
       return (userId && doc.owner === userId);
     }
@@ -39,6 +46,7 @@ if (Meteor.isServer) {
         throw new Meteor.Error('Please login');
       }
       try {
+        console.log('method insertLink params:', params);
         linkSchema.validate(params);
         return Links.insert(params);
       } catch(e) {

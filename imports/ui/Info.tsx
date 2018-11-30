@@ -47,9 +47,9 @@ const mapProps = (state: RootState) => ({
 
 export default compose(
   withTracker(() => {
-    const connection = Meteor.subscribe('links');
+    const connection = Meteor.subscribe('links', {userId: Meteor.userId()});
     return {
-      links: Links.find({}).fetch(),
+      links: Links.find().fetch(),
       loading: !connection.ready()
     };
   }),

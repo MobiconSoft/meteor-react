@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base'
+import { Form, Field } from 'react-final-form';
 
 export interface SignupProps {
 }
@@ -10,8 +11,6 @@ export interface LoginState {
 }
 
 export default class Signup extends React.Component<SignupProps, LoginState> {
-  email: any = React.createRef();
-  password: any = React.createRef();
 
   constructor(props) {
     super(props);
@@ -20,11 +19,11 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
     };
   }
 
-  onCreateAccount = (e: any) => {
-    e.preventDefault();
-
-    let email = this.email.current.value.trim();
-    let password = this.password.current.value.trim();
+  onCreateAccount = ({email, password}) => {
+    if (!email || !password) {
+      this.setState({ error: 'Please input email and password both' });
+      return;
+    }
     Accounts.createUser({ email, password }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
@@ -34,16 +33,22 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
     });
   }
 
+  makeForm = ({handleSubmit, submitting, pristine}) => {
+    return (
+      <form onSubmit={handleSubmit}>
+        <Field name="email" component="input" type="email" placeholder="Email" required />
+        <Field name="password" component="input" type="password" placeholder="Passowrd" required/>
+        <button type="submit" disabled={submitting || pristine}>Create Account</button>
+      </form>
+    );
+  }
+
   public render() {
     return (
       <div>
         <h1>Signup to short Link</h1>
         {this.state.error ? <p>{this.state.error} </p> : undefined}
-        <form onSubmit={this.onCreateAccount} noValidate>
-          <input type="email" ref={this.email} name="email" placeholder="Email" />
-          <input type="password" ref={this.password} name="password" placeholder="Password" />
-          <button>Create Acount</button>
-        </form>
+        <Form onSubmit={this.onCreateAccount} render={this.makeForm}/>
         <Link to="/">Already have a account?</Link>
       </div>
     );

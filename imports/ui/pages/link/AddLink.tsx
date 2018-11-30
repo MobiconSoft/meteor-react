@@ -1,33 +1,31 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { addLink } from './link.action';
+import { Form, Field } from 'react-final-form';
 
 export interface AddLinkProps {
   addLink: Function;
 }
 
 class AddLink extends React.Component<AddLinkProps, any> {
-  title: any = React.createRef();
-  url: any = React.createRef();
 
-  handleSubmit = (e: any) => {
-    e.preventDefault();
-    const param = {
-      title: this.title.current.value,
-      url: this.url.current.value
-    }
+  handleSubmit = (params) => {
     const { addLink } = this.props;
-    addLink(param);
+    addLink(params);
   };
 
-  public render() {
+  makeForm = ({handleSubmit, submitting, pristine}) => {
     return (
-      <form onSubmit={this.handleSubmit} >
-        <input type="text" ref={this.title} name="title" placeholder="title" />
-        <input type="text" ref={this.url} name="url" placeholder="url" />
-        <button>Add Link</button>
+      <form onSubmit={handleSubmit}>
+        <Field name="title" component="input" type="text" placeholder="Title" required />
+        <Field name="url" component="input" type="text" placeholder="Url" required />
+        <button type="submit" disabled={submitting || pristine}>Add Link</button>
       </form>
-    )
+    );
+  }
+
+  public render() {
+    return (<Form onSubmit={this.handleSubmit} render={this.makeForm} />);
   }
 }
 
