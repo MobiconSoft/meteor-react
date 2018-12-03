@@ -21,13 +21,17 @@ class AddLink extends React.Component<AddLinkProps, any> {
       <form onSubmit={handleSubmit}>
         <Col span={4}><AInput name="title" component="input" type="text" placeholder="Title" /></Col>
         <Col span={4}><AInput name="url" component="input" type="text" placeholder="Url" /></Col>
-        <Button type="primary" htmlType="submit" disabled={submitting || pristine}>Add Link</Button>
+        <Col span={2}><Button type="primary" htmlType="submit" disabled={submitting || pristine}>Add Link</Button></Col>
       </form>
     );
   }
 
   public render() {
-    return (<Form onSubmit={this.handleSubmit} render={this.makeForm} />);
+    return (
+      <Row gutter={5}>
+        <Form onSubmit={this.handleSubmit} render={this.makeForm} />
+      </Row>
+      );
   }
 }
 

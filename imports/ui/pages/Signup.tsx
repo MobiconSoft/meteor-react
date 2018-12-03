@@ -40,7 +40,7 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
       <form onSubmit={handleSubmit}>
         <Col span={4}><AInput name="email" component="input" type="email" placeholder="Email"  /></Col>
         <Col span={4}><AInput name="password" component="input" type="password" placeholder="Passowrd"  /></Col>
-        <Button type="primary" htmlType="submit" disabled={submitting || pristine}>Create Account</Button>
+        <Col span={2}><Button type="primary"htmlType="submit" disabled={submitting || pristine}>Create Account</Button></Col>
       </form>
     );
   }
@@ -50,8 +50,12 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
       <div>
         <h1>Signup to short Link</h1>
         {this.state.error ? <p>{this.state.error} </p> : undefined}
-        <Form onSubmit={this.onCreateAccount} render={this.makeForm}/>
-        <Link to="/">Already have a account?</Link>
+        <Row gutter={5}>
+          <Form onSubmit={this.onCreateAccount} render={this.makeForm}/>
+        </Row>
+        <Row gutter={5}>
+          <Link to="/">Already have a account?</Link>
+        </Row>
       </div>
     );
   }

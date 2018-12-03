@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { removeLink } from './link.action';
 import { connect } from 'react-redux';
+import { Button } from 'antd';
 
 export interface LinkProps {
   link: any,
@@ -17,7 +18,7 @@ class Link extends React.Component<LinkProps, any> {
     return (
       <li key={link._id}>
         <a href={link.url} target="_blank">{link.title}</a>
-        <button onClick={this.deleteLink}> x </button>
+        <Button onClick={this.deleteLink}> x </Button>
       </li>
     );
   }

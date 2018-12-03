@@ -37,13 +37,11 @@ export default class Login extends React.Component<LoginProps, LoginState> {
 
   makeForm = ({ handleSubmit, submitting, pristine }) => {
     return (
-      <React.Fragment>
         <form onSubmit={handleSubmit}>
           <Col span={4}><AInput name="email" type="email" placeholder="Email" /></Col>
           <Col span={4}><AInput name="password" type="password" placeholder="Passowrd" /></Col>
           <Col span={2}><Button type="primary" htmlType="submit" disabled={submitting || pristine}>Login</Button></Col>
         </form>
-      </React.Fragment>
     );
   };
 
@@ -55,7 +53,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
         <Row gutter={5}>
           <Form onSubmit={this.onLogin} render={this.makeForm} />
         </Row>
-        <Row gutter={5} align="bottom">
+        <Row gutter={5}>
           <Link to="/signup">Have a account?</Link>
         </Row>
       </div>
