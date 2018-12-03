@@ -6,7 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Button, Row } from 'antd';
 import {
   EuiFlexGroup, EuiFlexItem, EuiButton, EuiPage, EuiSpacer,
-  EuiPageBody, EuiPageHeader, EuiPageHeaderSection,  EuiPageContent, EuiPageContentHeader, EuiPageContentBody, EuiTitle
+  EuiPageBody, EuiPageHeader,  EuiPageContent, EuiPageContentBody, EuiTitle
 } from '@elastic/eui';
 
 import Links from '../api/links';
