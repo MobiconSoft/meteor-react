@@ -12,7 +12,6 @@ export default class LinkList extends React.Component<LinkListProps, any> {
     );
     return (
       <div>
-        <h2>Links</h2>
         <ul>{links}</ul>
       </div>
     );

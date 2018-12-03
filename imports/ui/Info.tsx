@@ -3,13 +3,17 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Button, Row } from 'antd';
+import {
+  EuiFlexGroup, EuiFlexItem, EuiButton, EuiPage, EuiSpacer,
+  EuiPageBody, EuiPageHeader, EuiPageHeaderSection,  EuiPageContent, EuiPageContentHeader, EuiPageContentBody, EuiTitle
+} from '@elastic/eui';
 
 import Links from '../api/links';
 import AddLink from './pages/link/AddLink';
 import LinkList from './pages/link/LinkList';
 import { RootState } from './store';
 import { Accounts } from 'meteor/accounts-base';
-import { Button, Row } from 'antd';
 
 interface InfoProps {
   links: any;
@@ -33,13 +37,33 @@ class Info extends React.Component<InfoProps, any> {
 
   render() {
     return (
-      <div>
-        <Row>
-          <Button onClick={this.onLogout}>Log out</Button>
-        </Row>
-        <AddLink />
-        {this.linkList()}
-      </div>
+      <EuiPage>
+        <EuiPageBody>
+          <EuiPageHeader>
+              <EuiFlexGroup justifyContent="spaceBetween">
+                <EuiFlexItem grow={1} style={{ paddingLeft: 20 }}>
+                  <EuiTitle size="m"><h1>Add Link & List</h1></EuiTitle>
+                </EuiFlexItem>
+                <EuiFlexItem style={{ maxWidth: 130, paddingRight: 30 }}>
+                  <EuiButton style={{ maxWidth: 100 }} onClick={this.onLogout}>Log out</EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+          </EuiPageHeader>
+          <EuiPageContent>
+            <EuiPageContentBody>
+              <EuiFlexGroup direction="column" justifyContent="spaceBetween">
+                <EuiFlexItem style={{ maxWidth: 800 }}>
+                  <AddLink /> 
+                </EuiFlexItem>
+                <EuiSpacer />
+                <EuiFlexItem style={{ maxWidth: 400 }}>
+                  {this.linkList()}
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiPageContentBody>
+          </EuiPageContent>
+        </EuiPageBody>
+      </EuiPage>
     );
   }
 }

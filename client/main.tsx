@@ -4,6 +4,9 @@ import { Tracker } from 'meteor/tracker';
 import { render } from 'react-dom';
 import { Root, authenticated } from '../imports/ui/Routes';
 
+// eui
+import '@elastic/eui/dist/eui_theme_light.css';
+
 Tracker.autorun(() => {
   const isAuthenticated = !!Meteor.user();
   authenticated(isAuthenticated);

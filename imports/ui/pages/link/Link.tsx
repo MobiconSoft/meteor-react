@@ -2,6 +2,7 @@ import * as React from 'react';
 import { removeLink } from './link.action';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
+import { EuiButton } from '@elastic/eui';
 
 export interface LinkProps {
   link: any,
@@ -18,7 +19,7 @@ class Link extends React.Component<LinkProps, any> {
     return (
       <li key={link._id}>
         <a href={link.url} target="_blank">{link.title}</a>
-        <Button onClick={this.deleteLink}> x </Button>
+        <EuiButton size="s" style={{minWidth: 40, marginLeft: 10}} onClick={this.deleteLink}>x</EuiButton>
       </li>
     );
   }
