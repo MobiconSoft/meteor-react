@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base'
-import { Form, Field } from 'react-final-form';
+import { Form } from 'react-final-form';
+import { Row, Col, Button } from 'antd';
+import AInput from '../sdk/antd/antd-final-input';
 
 export interface SignupProps {
 }
@@ -36,9 +38,9 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
   makeForm = ({handleSubmit, submitting, pristine}) => {
     return (
       <form onSubmit={handleSubmit}>
-        <Field name="email" component="input" type="email" placeholder="Email" required />
-        <Field name="password" component="input" type="password" placeholder="Passowrd" required/>
-        <button type="submit" disabled={submitting || pristine}>Create Account</button>
+        <Col span={4}><AInput name="email" component="input" type="email" placeholder="Email"  /></Col>
+        <Col span={4}><AInput name="password" component="input" type="password" placeholder="Passowrd"  /></Col>
+        <Button type="primary" htmlType="submit" disabled={submitting || pristine}>Create Account</Button>
       </form>
     );
   }

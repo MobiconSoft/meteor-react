@@ -9,6 +9,7 @@ import AddLink from './pages/link/AddLink';
 import LinkList from './pages/link/LinkList';
 import { RootState } from './store';
 import { Accounts } from 'meteor/accounts-base';
+import { Button, Row } from 'antd';
 
 interface InfoProps {
   links: any;
@@ -33,7 +34,9 @@ class Info extends React.Component<InfoProps, any> {
   render() {
     return (
       <div>
-        <button onClick={this.onLogout}>Log out</button>
+        <Row>
+          <Button onClick={this.onLogout}>Log out</Button>
+        </Row>
         <AddLink />
         {this.linkList()}
       </div>

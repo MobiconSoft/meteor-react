@@ -2,6 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { addLink } from './link.action';
 import { Form, Field } from 'react-final-form';
+import { Row, Col, Button } from 'antd';
+import AInput from '../../sdk/antd/antd-final-input';
 
 export interface AddLinkProps {
   addLink: Function;
@@ -17,9 +19,9 @@ class AddLink extends React.Component<AddLinkProps, any> {
   makeForm = ({handleSubmit, submitting, pristine}) => {
     return (
       <form onSubmit={handleSubmit}>
-        <Field name="title" component="input" type="text" placeholder="Title" required />
-        <Field name="url" component="input" type="text" placeholder="Url" required />
-        <button type="submit" disabled={submitting || pristine}>Add Link</button>
+        <Col span={4}><AInput name="title" component="input" type="text" placeholder="Title" /></Col>
+        <Col span={4}><AInput name="url" component="input" type="text" placeholder="Url" /></Col>
+        <Button type="primary" htmlType="submit" disabled={submitting || pristine}>Add Link</Button>
       </form>
     );
   }

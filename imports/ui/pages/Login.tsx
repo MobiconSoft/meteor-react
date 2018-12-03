@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Form } from 'react-final-form';
 import { Row, Col, Button } from 'antd';
-import AFInput from '../sdk/antd/antd-final-input';
-
+import AInput from '../sdk/antd/antd-final-input';
 
 export interface LoginProps {
   history: any;
@@ -40,8 +39,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     return (
       <React.Fragment>
         <form onSubmit={handleSubmit}>
-          <Col span={4}><AFInput name="email" type="email" placeholder="Email" /></Col>
-          <Col span={4}><AFInput name="password" type="password" placeholder="Passowrd" /></Col>
+          <Col span={4}><AInput name="email" type="email" placeholder="Email" /></Col>
+          <Col span={4}><AInput name="password" type="password" placeholder="Passowrd" /></Col>
           <Col span={2}><Button type="primary" htmlType="submit" disabled={submitting || pristine}>Login</Button></Col>
         </form>
       </React.Fragment>

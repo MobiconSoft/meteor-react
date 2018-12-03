@@ -8,10 +8,10 @@ const AntdInput = ({input, ...rest}) => {
   )
 }
 
-const AFInput = (props: any) => {
+const AInput = (props: any) => {
     return (
       <Field {...props} component={AntdInput} />
     );
 }
 
-export default AFInput;
+export default AInput;
