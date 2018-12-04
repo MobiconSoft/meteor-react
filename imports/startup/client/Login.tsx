@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Form } from 'react-final-form';
 import { EuiButton, EuiFlexItem } from '@elastic/eui';
-import EInput from '../sdk/eui/eui-final-input';
-import { StyledShortEuiFlexItem, StyledWidthEuiFlexGroup } from '../sdk/eui/flexgroup.style';
-import { JPage, JRow } from '../layouts/common.style';
+import EInput from '../../client/sdk/eui/eui-final-input';
+import { StyledShortEuiFlexItem, StyledWidthEuiFlexGroup } from '../../client/sdk/eui/flexgroup.style';
+import { JPage, JRow } from '../../client/layouts/common.style';
 
 export interface LoginProps {
   history: any;

@@ -4,8 +4,8 @@ import { StateType } from 'typesafe-actions';
 import { createBrowserHistory } from 'history';
 import { connectRouter, RouterAction, LocationChangeAction } from 'connected-react-router';
 
-import { linkEpic } from './pages/link/link.epic';
-import { linkReducer, LinkAction } from './pages/link/link.reducer';
+import { linkEpic } from '../../client/pages/link/link.epic';
+import { linkReducer, LinkAction } from '../../client/pages/link/link.reducer';
 
 /***********************
  * root reducer

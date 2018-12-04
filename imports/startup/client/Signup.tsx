@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base'
 import { Form } from 'react-final-form';
 import { Row, Col, Button } from 'antd';
-import AInput from '../sdk/antd/antd-final-input';
+import AInput from '../../client/sdk/antd/antd-final-input';
 
 export interface SignupProps {
 }

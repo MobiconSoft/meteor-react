@@ -1,19 +1,14 @@
 import * as React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import { Button, Row } from 'antd';
+import { Accounts } from 'meteor/accounts-base';
 import {
   EuiFlexGroup, EuiFlexItem, EuiButton, EuiPage, EuiSpacer,
   EuiPageBody, EuiPageHeader,  EuiPageContent, EuiPageContentBody, EuiTitle
 } from '@elastic/eui';
 
-import Links from '../api/links';
 import AddLink from './pages/link/AddLink';
 import LinkList from './pages/link/LinkList';
-import { RootState } from './store';
-import { Accounts } from 'meteor/accounts-base';
+import { RootState } from '../startup/client/store';
+import { withLink } from './sdk/stores/link.store';
 
 interface InfoProps {
   links: any;
@@ -72,13 +67,4 @@ const mapProps = (state: RootState) => ({
   
 });
 
-export default compose(
-  withTracker(() => {
-    const connection = Meteor.subscribe('links', {userId: Meteor.userId()});
-    return {
-      links: Links.find().fetch(),
-      loading: !connection.ready()
-    };
-  }),
-  connect(mapProps)
-)(Info);
+export default withLink(mapProps, Info);

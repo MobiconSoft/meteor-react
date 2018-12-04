@@ -3,6 +3,7 @@ import { removeLink } from './link.action';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import { EuiButton } from '@elastic/eui';
+import { JRow } from '../../layouts/common.style';
 
 export interface LinkProps {
   link: any,
@@ -17,10 +18,12 @@ class Link extends React.Component<LinkProps, any> {
   public render() {
     const { link } = this.props;
     return (
-      <li key={link._id}>
-        <a href={link.url} target="_blank">{link.title}</a>
-        <EuiButton size="s" style={{minWidth: 40, marginLeft: 10}} onClick={this.deleteLink}>x</EuiButton>
-      </li>
+      <JRow>
+        <li key={link._id}>
+          <a href={link.url} target="_blank">{link.title}</a>
+          <EuiButton size="s" style={{minWidth: 40, marginLeft: 10}} onClick={this.deleteLink}>x</EuiButton>
+        </li>
+      </JRow>
     );
   }
 }
