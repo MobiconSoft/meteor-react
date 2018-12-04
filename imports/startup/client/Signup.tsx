@@ -52,7 +52,7 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
   public render() {
     return (
       <JPage>
-        <JRow fontsize="20px" padding="10px">Signup to short Link</JRow>
+        <JRow fontSize="20px" padding="10px">Signup to short Link</JRow>
         <JRow>{this.state.error ? <p>{this.state.error} </p> : undefined}</JRow>
         <JRow><Form onSubmit={this.onCreateAccount} render={this.makeForm} /></JRow>
         <JRow><Link to="/">Already have a account?</Link></JRow>

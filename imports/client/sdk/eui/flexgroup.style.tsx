@@ -8,7 +8,7 @@ export const JFlexGroup = styled(EuiFlexGroup)`
 export const JFlexItem = styled(EuiFlexItem)`
   max-width: ${ props => props.width || '800px'} ;
   input {
-    background: ${props => props.bgcolor || 'white' };
+    background: ${props => props.background || 'white' };
     color: ${props => props.color || 'black' };
   }
 `;
