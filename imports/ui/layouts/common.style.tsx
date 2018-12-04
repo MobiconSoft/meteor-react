@@ -14,5 +14,5 @@ export const JRow = styled.div`
   align-items: ${ props => props.align || 'center' };
   width: ${ props => props.width || '100%' };
   padding: ${ props => props.padding || '5px' };
-  font-size: ${ props => props.fontsize || '14px' };
+  font-size: ${ props => props.fontSize || '14px' };
 `;

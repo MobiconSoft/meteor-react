@@ -22,7 +22,7 @@ class AddLink extends React.Component<AddLinkProps, any> {
       <form onSubmit={handleSubmit}>
         <EuiFlexGroup direction="row" gutterSize="s">
           <EuiFlexItem><EInput name="title" component="input" type="text" placeholder="Title" /></EuiFlexItem>
-          <StyledLongEuiFlexItem bgcolor="red"><EInput name="url" component="input" type="text" placeholder="Url" /></StyledLongEuiFlexItem>
+          <StyledLongEuiFlexItem background="red"><EInput name="url" component="input" type="text" placeholder="Url" /></StyledLongEuiFlexItem>
           <StyledShortEuiFlexItem>
             <EuiButton type="submit" fill disabled={submitting || pristine}>Add Link</EuiButton>
           </StyledShortEuiFlexItem>

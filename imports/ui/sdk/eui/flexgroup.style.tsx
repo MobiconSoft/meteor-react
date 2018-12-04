@@ -8,7 +8,7 @@ export const StyledWidthEuiFlexGroup = styled(EuiFlexGroup)`
 export const StyledLongEuiFlexItem = styled(EuiFlexItem)`
   max-width: 400px;
   input {
-    background: ${props => props.bgcolor || 'white'};
+    background: ${props => props.background || 'white'};
     color: white;
   }
 `;
