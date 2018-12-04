@@ -15,4 +15,4 @@ export const JRow = styled.div`
   width: ${ props => props.width || '100%' };
   padding: ${ props => props.padding || '5px' };
   font-size: ${ props => props.fontsize || '14px' };
-`
+`;
