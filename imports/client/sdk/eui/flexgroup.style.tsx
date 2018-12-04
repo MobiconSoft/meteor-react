@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 import { EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
 
-export const StyledWidthEuiFlexGroup = styled(EuiFlexGroup)`
+export const JFlexGroup = styled(EuiFlexGroup)`
   width: ${props => props.width || '100%'};
 `;
 
-export const StyledLongEuiFlexItem = styled(EuiFlexItem)`
-  max-width: 400px;
+export const JFlexItem = styled(EuiFlexItem)`
+  max-width: ${ props => props.width || '800px'} ;
   input {
-    background: ${props => props.bgcolor || 'white'};
-    color: white;
+    background: ${props => props.bgcolor || 'white' };
+    color: ${props => props.color || 'black' };
   }
-`;
-
-export const StyledShortEuiFlexItem = styled(EuiFlexItem)`
-  max-width: 100px;
 `;

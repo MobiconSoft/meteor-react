@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data'; 
-import Links from '../../../api/links';
+import Links from './links';
 
 export const withLink = (mapProps: any, Component: any) => {
   return compose(

@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Form } from 'react-final-form';
 import { EuiButton, EuiFlexItem } from '@elastic/eui';
 import EInput from '../../client/sdk/eui/eui-final-input';
-import { StyledShortEuiFlexItem, StyledWidthEuiFlexGroup } from '../../client/sdk/eui/flexgroup.style';
+import { JFlexItem, JFlexGroup } from '../../client/sdk/eui/flexgroup.style';
 import { JPage, JRow } from '../../client/layouts/common.style';
 
 export interface LoginProps {
@@ -40,11 +40,11 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   makeForm = ({ handleSubmit, submitting, pristine }) => {
     return (
       <form onSubmit={handleSubmit}>
-        <StyledWidthEuiFlexGroup width="600px" direction="row" gutterSize="s">
-          <EuiFlexItem><EInput name="email" type="email" placeholder="Email" /></EuiFlexItem>
-          <EuiFlexItem><EInput name="password" type="password" placeholder="Passowrd" /></EuiFlexItem>
-          <StyledShortEuiFlexItem><EuiButton type="submit" disabled={submitting || pristine}>Login</EuiButton></StyledShortEuiFlexItem>
-        </StyledWidthEuiFlexGroup>
+        <JFlexGroup width="600px" direction="row" gutterSize="s">
+          <JFlexItem><EInput name="email" type="email" placeholder="Email" /></JFlexItem>
+          <JFlexItem><EInput name="password" type="password" placeholder="Passowrd" /></JFlexItem>
+          <JFlexItem width="100px"><EuiButton type="submit" disabled={submitting || pristine}>Login</EuiButton></JFlexItem>
+        </JFlexGroup>
       </form>
     );
   };

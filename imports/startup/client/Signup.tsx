@@ -2,8 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base'
 import { Form } from 'react-final-form';
-import { Row, Col, Button } from 'antd';
-import AInput from '../../client/sdk/antd/antd-final-input';
+import { EuiButton } from '@elastic/eui';
+import EInput from '../../client/sdk/eui/eui-final-input';
+import { JFlexGroup, JFlexItem } from '../../client/sdk/eui/flexgroup.style';
+import { JRow, JPage } from '../../client/layouts/common.style';
 
 export interface SignupProps {
 }
@@ -38,25 +40,23 @@ export default class Signup extends React.Component<SignupProps, LoginState> {
   makeForm = ({handleSubmit, submitting, pristine}) => {
     return (
       <form onSubmit={handleSubmit}>
-        <Col span={4}><AInput name="email" component="input" type="email" placeholder="Email"  /></Col>
-        <Col span={4}><AInput name="password" component="input" type="password" placeholder="Passowrd"  /></Col>
-        <Col span={2}><Button type="primary"htmlType="submit" disabled={submitting || pristine}>Create Account</Button></Col>
+        <JFlexGroup width="600px" direction="row" gutterSize="s">
+          <JFlexItem><EInput name="email" component="input" type="email" placeholder="Email" /></JFlexItem>
+          <JFlexItem><EInput name="password" component="input" type="password" placeholder="Passowrd" /></JFlexItem>
+          <JFlexItem width="100px"><EuiButton type="submit" disabled={submitting || pristine}>Create Account</EuiButton></JFlexItem>
+        </JFlexGroup>
       </form>
     );
   }
 
   public render() {
     return (
-      <div>
-        <h1>Signup to short Link</h1>
-        {this.state.error ? <p>{this.state.error} </p> : undefined}
-        <Row gutter={5}>
-          <Form onSubmit={this.onCreateAccount} render={this.makeForm}/>
-        </Row>
-        <Row gutter={5}>
-          <Link to="/">Already have a account?</Link>
-        </Row>
-      </div>
+      <JPage>
+        <JRow fontsize="20px" padding="10px">Signup to short Link</JRow>
+        <JRow>{this.state.error ? <p>{this.state.error} </p> : undefined}</JRow>
+        <JRow><Form onSubmit={this.onCreateAccount} render={this.makeForm} /></JRow>
+        <JRow><Link to="/">Already have a account?</Link></JRow>
+      </JPage>
     );
   }
 }

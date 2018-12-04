@@ -8,7 +8,7 @@ import {
 import AddLink from './pages/link/AddLink';
 import LinkList from './pages/link/LinkList';
 import { RootState } from '../startup/client/store';
-import { withLink } from './sdk/stores/link.store';
+import { withLink } from '../api/links.tracker';
 
 interface InfoProps {
   links: any;
